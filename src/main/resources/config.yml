@@ -1,0 +1,26 @@
+database:
+  hostname: "ws1.giacomobrotto.net"
+  username: "gchristian_user"
+  password: "Chr@291201"
+  database: "gchristian_silexmc"
+  port: 3306
+
+messages:
+  generals:
+    no-player: "&4&l» &cThis player is not online at the moment."
+    no-loaded: "&4&l» &c"
+    no-console: "&4&l» &cThis command can only be executed from player."
+    no-permission: "&4&l» &cYou do not have permission for this command."
+    no-subcommand: "&4&l» &cThis subcommand does not exist."
+    no-correct-usage: "&4&l» &cUsage is: %command%."
+  economy:
+    balance: "&2&l» &aYou have %balance% of money."
+    sent-payment: "&2&l» &a%money%$ has been sent to %player_name%."
+    receive-payment: "&2&l» &a%money%$ has been received from %player_name%."
+    not-enough-balance: "&4&l» &cYou don't have enough money for this."
+    set-balance: "&2&l» &aYou set %player_name%'s money to %money%$."
+    has-set-balance: "&2&l» &aYour money has been set to %money%$."
+    give-balance: "&2&l» &aYou added %money%$ to %player_name%'s money."
+    has-give-balance: "&2&l» &a%money%$ has been added to you."
+    take-balance: "&2&l» &aRemoved %money%$ from %player_name%'s money."
+    has-take-balance: "&2&l» &aYou have %money%$ removed."
