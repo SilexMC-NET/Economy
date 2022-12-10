@@ -1,8 +1,8 @@
 package me.imjaxs.silexmc.economy.hooks;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.imjaxs.silexmc.economy.Economy;
 import me.imjaxs.silexmc.economy.api.EconomyAPI;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,8 +31,13 @@ public class PlaceholderAPI extends PlaceholderExpansion {
 
     @Override
     public @Nullable String onPlaceholderRequest(Player player, @NotNull String params) {
-        if (params.equalsIgnoreCase("balance"))
-            return String.valueOf(economyAPI.formatValue(economyAPI.getBalance(player)));
         return super.onPlaceholderRequest(player, params);
+    }
+
+    @Override
+    public @Nullable String onRequest(OfflinePlayer player, @NotNull String params) {
+        if (params.equalsIgnoreCase("balance"))
+            return String.valueOf(economyAPI.getBalance(player));
+        return super.onRequest(player, params);
     }
 }

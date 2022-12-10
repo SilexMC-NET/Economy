@@ -2,7 +2,6 @@ package me.imjaxs.silexmc.economy.managers;
 
 import com.google.common.collect.Lists;
 import me.imjaxs.silexmc.economy.Economy;
-import me.imjaxs.silexmc.economy.api.EconomyAPI;
 import me.imjaxs.silexmc.economy.managers.database.DatabaseManager;
 import me.imjaxs.silexmc.economy.objects.EPlayer;
 import org.bukkit.Bukkit;
@@ -20,15 +19,27 @@ public class PlayerManager {
         this.playerCache = Lists.newArrayList();
         this.tempPlayerCache = Lists.newArrayList();
 
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            databaseManager.loadPlayers().whenComplete((tempPlayers, throwableLoad) -> {
+                if (throwableLoad != null) {
+                    throwableLoad.printStackTrace();
+                } else {
+                    if (tempPlayers != null && !tempPlayers.isEmpty()) {
+                        tempPlayerCache.clear();
+                        tempPlayerCache.addAll(tempPlayers);
+                    }
+                }
+            });
+        });
+
         Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, () -> {
             if (playerCache.isEmpty())
                 return;
-
             databaseManager.saveAsyncPlayers().whenComplete((unused, throwable) -> {
                 if (throwable != null) {
                     throwable.printStackTrace();
                 } else {
-                    databaseManager.loadOrderPlayers().whenComplete((tempPlayers, throwableLoad) -> {
+                    databaseManager.loadPlayers().whenComplete((tempPlayers, throwableLoad) -> {
                         if (throwableLoad != null) {
                             throwableLoad.printStackTrace();
                         } else {

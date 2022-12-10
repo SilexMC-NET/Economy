@@ -66,7 +66,7 @@ public class DatabaseManager {
         }, false, Types.DOUBLE, Types.VARCHAR);
     }
 
-    public CompletableFuture<List<EPlayer>> loadOrderPlayers() {
+    public CompletableFuture<List<EPlayer>> loadPlayers() {
         return asyncDatabase.queryForList("SELECT * FROM " + TABLE + " ORDER BY balance DESC;", (result, row) -> {
             return new EPlayer(result.getString("name"), UUID.fromString(result.getString("uniqueID")), result.getDouble("balance"));
         });

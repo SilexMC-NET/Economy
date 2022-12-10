@@ -73,10 +73,10 @@ public class PaymentCommand implements CommandExecutor {
                     message.replace("%money%", economyAPI.formatValue(value)).replace("%player_name%", target.getName())
             ));
 
-        economyAPI.depositBalance(player, value);
+        economyAPI.depositBalance(target, value);
         message = messages.getString("economy.receive-payment");
         if (message != null && !message.isEmpty())
-            sender.sendMessage(Utils.colorize(
+            target.sendMessage(Utils.colorize(
                     message.replace("%money%", economyAPI.formatValue(value)).replace("%player_name%", player.getName())
             ));
         return true;

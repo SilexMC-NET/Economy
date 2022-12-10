@@ -18,7 +18,6 @@ public class EconomyAPI {
     public double getBalance(OfflinePlayer player) {
         EPlayer economyPlayer = playerManager.getPlayer(player);
         if (economyPlayer == null) {
-            System.out.println("null");
             return 0.0;
         }
         return economyPlayer.getBalance();

@@ -1,82 +1,55 @@
 package me.imjaxs.silexmc.economy.tools;
 
+import com.google.common.collect.Lists;
 import org.bukkit.ChatColor;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utils {
     public static String colorize(String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
 
-    @SuppressWarnings("BigDecimalMethodWithoutRoundingCalled")
+    public static List<String> colorize(List<String> strings) {
+        return strings.stream().map(Utils::colorize).collect(Collectors.toList());
+    }
+
     public static String format(double value) {
-        BigDecimal balance = new BigDecimal(value);
-        if (balance.compareTo(new BigDecimal(1000)) < 0)
-            return String.valueOf(balance);
+        if (value < 1000L)
+            return formatNumber(value);
 
-        BigDecimal var2 = null;
-        BigDecimal var3 = null;
+        if (value < 1000000L)
+            return formatNumber(value / 1000L) + "K";
 
-        String symbol = "";
-        String format = "";
-        if (balance.compareTo(new BigDecimal("1000000000000000000000000000")) > 0 || balance.compareTo(new BigDecimal("1000000000000000000000000000")) == 0) {
-            var2 = new BigDecimal(100000000000000000L);
-            var3 = new BigDecimal("1.0E10");
+        if (value < 1000000000L)
+            return formatNumber(value / 1000000L) + "M";
 
-            symbol = "OC";
-            format = String.valueOf(balance.divide(var2).divide(var3).setScale(1, RoundingMode.HALF_UP));
-        } else if (balance.compareTo(new BigDecimal("1000000000000000000000000")) > 0 || balance.compareTo(new BigDecimal("1000000000000000000000000")) == 0) {
-            var2 = new BigDecimal(1000000000000000L);
-            var3 = new BigDecimal("1.0E9");
+        if (value < 1000000000000L)
+            return formatNumber(value / 1000000000L) + "B";
 
-            symbol = "SP";
-            format = String.valueOf(balance.divide(var2).divide(var3).setScale(1, RoundingMode.HALF_UP));
-        } else if (balance.compareTo(new BigDecimal("1000000000000000000000")) > 0 || balance.compareTo(new BigDecimal("1000000000000000000000")) == 0) {
-            var2 = new BigDecimal(10000000000000L);
-            var3 = new BigDecimal("1.0E8");
+        if (value < 1000000000000000L)
+            return formatNumber(value / 1000000000000L) + "T";
 
-            symbol = "SX";
-            format = String.valueOf(balance.divide(var2).divide(var3).setScale(1, RoundingMode.HALF_UP));
-        } else if (balance.compareTo(new BigDecimal(1000000000000000000L)) > 0 || balance.compareTo(new BigDecimal(1000000000000000000L)) == 0) {
-            var2 = new BigDecimal(100000000000L);
-            var3 = new BigDecimal("1.0E7");
+        if (value < 1000000000000000000L)
+            return formatNumber(value / 1000000000000000L) + "Q";
 
-            symbol = "QT";
-            format = String.valueOf(balance.divide(var2).divide(var3).setScale(1, RoundingMode.HALF_UP));
-        } else if (balance.compareTo(new BigDecimal(1000000000000000L)) > 0 || balance.compareTo(new BigDecimal(1000000000000000L)) == 0) {
-            var2 = new BigDecimal(1000000000L);
-            var3 = new BigDecimal("1000000.0");
+        if (value < 1000000000000000000000.0)
+            return formatNumber(value / 1000000000000000000L) + "QT";
 
-            symbol = "Q";
-            format = String.valueOf(balance.divide(var2).divide(var3).setScale(1, RoundingMode.HALF_UP));
-        } else if (balance.compareTo(new BigDecimal(1000000000000L)) > 0 || balance.compareTo(new BigDecimal(1000000000000L)) == 0) {
-            var2 = new BigDecimal(100000000);
-            var3 = new BigDecimal("10000.0");
+        if (value < 1000000000000000000000000.0)
+            return formatNumber(value / 1000000000000000000000.0) + "SX";
 
-            symbol = "T";
-            format = String.valueOf(balance.divide(var2).divide(var3).setScale(1, RoundingMode.HALF_UP));
-        } else if (balance.compareTo(new BigDecimal(1000000000L)) > 0 || balance.compareTo(new BigDecimal(1000000000L)) == 0) {
-            var2 = new BigDecimal(1000000);
-            var3 = new BigDecimal("1000.0");
+        if (value < 1000000000000000000000000000.0)
+            return formatNumber(value / 1000000000000000000000000.0) + "SP";
 
-            symbol = "B";
-            format = String.valueOf(balance.divide(var2).divide(var3).setScale(1, RoundingMode.HALF_UP));
-        } else if (balance.compareTo(new BigDecimal(1000000)) > 0 || balance.compareTo(new BigDecimal(1000000)) == 0) {
-            var2 = new BigDecimal(10000);
-            var3 = new BigDecimal("100.0");
-
-            symbol = "M";
-            format = String.valueOf(balance.divide(var2).divide(var3).setScale(1, RoundingMode.HALF_UP));
-        } else if (balance.compareTo(new BigDecimal(1000)) > 0 || balance.compareTo(new BigDecimal(1000)) == 0) {
-            var2 = new BigDecimal(100);
-            var3 = new BigDecimal("10.0");
-
-            symbol = "K";
-            format = String.valueOf(balance.divide(var2).divide(var3).setScale(1, RoundingMode.HALF_UP));
-            return format + symbol;
-        }
-        return format + symbol;
+        return formatNumber(value / 1000000000000000000000000000.0) + "OC";
+    }
+    private static String formatNumber(double d) {
+        NumberFormat format = NumberFormat.getInstance();
+        format.setMaximumFractionDigits(2);
+        format.setMinimumFractionDigits(0);
+        return format.format(d);
     }
 }

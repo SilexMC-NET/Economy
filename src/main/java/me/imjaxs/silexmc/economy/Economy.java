@@ -3,6 +3,7 @@ package me.imjaxs.silexmc.economy;
 import me.imjaxs.silexmc.economy.api.EconomyAPI;
 import me.imjaxs.silexmc.economy.commands.admin.AdminCommandManager;
 import me.imjaxs.silexmc.economy.commands.user.BalanceCommand;
+import me.imjaxs.silexmc.economy.commands.user.BalanceTopCommand;
 import me.imjaxs.silexmc.economy.commands.user.PaymentCommand;
 import me.imjaxs.silexmc.economy.hooks.PlaceholderAPI;
 import me.imjaxs.silexmc.economy.listeners.PlayerListener;
@@ -41,6 +42,7 @@ public final class Economy extends JavaPlugin {
          */
         this.getCommand("economy").setExecutor(new AdminCommandManager(this));
         this.getCommand("balance").setExecutor(new BalanceCommand(this));
+        this.getCommand("balancetop").setExecutor(new BalanceTopCommand(this));
         this.getCommand("payment").setExecutor(new PaymentCommand(this));
 
 

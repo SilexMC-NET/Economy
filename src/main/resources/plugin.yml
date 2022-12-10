@@ -11,7 +11,12 @@ commands:
       - eco
   balance:
     description: //
-    aliases: []
+    aliases:
+      - bal
+  balancetop:
+    description: //
+    aliases:
+      - baltop
   payment:
     description: //
     aliases:

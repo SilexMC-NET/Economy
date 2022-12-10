@@ -55,11 +55,11 @@ public class SetCommand implements SubCommand {
                     message.replace("%player_name%", target.getName()).replace("%money%", economyAPI.formatValue(value))
             ));
 
-        message = messages.getString("economy.has-set-balance");
-        if (message != null && !message.isEmpty())
-            sender.sendMessage(Utils.colorize(
-                    message.replace("%money%", economyAPI.formatValue(value))
-            ));
+//        message = messages.getString("economy.has-set-balance");
+//        if (message != null && !message.isEmpty())
+//            sender.sendMessage(Utils.colorize(
+//                    message.replace("%money%", economyAPI.formatValue(value))
+//            ));
         return true;
     }
 }
