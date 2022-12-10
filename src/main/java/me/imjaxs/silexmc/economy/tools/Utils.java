@@ -21,7 +21,7 @@ public class Utils {
             return formatNumber(value);
 
         if (value < 1000000L)
-            return formatNumber(value / 1000L) + "K";
+            return formatNumber(value / 1000L) + "k";
 
         if (value < 1000000000L)
             return formatNumber(value / 1000000L) + "M";
@@ -33,18 +33,18 @@ public class Utils {
             return formatNumber(value / 1000000000000L) + "T";
 
         if (value < 1000000000000000000L)
-            return formatNumber(value / 1000000000000000L) + "Q";
+            return formatNumber(value / 1000000000000000L) + "Qd";
 
         if (value < 1000000000000000000000.0)
-            return formatNumber(value / 1000000000000000000L) + "QT";
+            return formatNumber(value / 1000000000000000000L) + "Qt";
 
         if (value < 1000000000000000000000000.0)
-            return formatNumber(value / 1000000000000000000000.0) + "SX";
+            return formatNumber(value / 1000000000000000000000.0) + "Sx";
 
         if (value < 1000000000000000000000000000.0)
-            return formatNumber(value / 1000000000000000000000000.0) + "SP";
+            return formatNumber(value / 1000000000000000000000000.0) + "Sp";
 
-        return formatNumber(value / 1000000000000000000000000000.0) + "OC";
+        return formatNumber(value / 1000000000000000000000000000.0) + "O";
     }
     private static String formatNumber(double d) {
         NumberFormat format = NumberFormat.getInstance();
