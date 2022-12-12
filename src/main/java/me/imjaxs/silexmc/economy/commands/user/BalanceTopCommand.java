@@ -67,8 +67,11 @@ public class BalanceTopCommand implements CommandExecutor {
             EPlayer var = players.get(i);
             inventory.getInventory().setItem(slots[i], ItemBuilder.builder(Material.SKULL_ITEM, 3)
                     .name(
-                            "&f#%position%. &e%player_name%: &f%money%"
-                                    .replace("%position%", String.valueOf(value)).replace("%player_name%", var.getName()).replace("%money%", economyAPI.formatValue(var.getBalance()))
+                            "&f#%position%. &e%player_name%: &f%money% &8(&a%money_format%&8)"
+                                    .replace("%position%", String.valueOf(value))
+                                    .replace("%player_name%", var.getName())
+                                    .replace("%money%", String.format("%,.2f", var.getBalance()))
+                                    .replace("%money_format%", economyAPI.formatValue(var.getBalance()))
                     )
                     .owner(var.getName())
                     .build()

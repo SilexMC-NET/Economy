@@ -13,7 +13,7 @@ messages:
     no-subcommand: "&4&lMONEY &8» &cThis subcommand does not exist."
     no-correct-usage: "&4&lMONEY &8» &cUsage is: %command%."
   economy:
-    balance: "&2&lMONEY &8» &aYou have %balance% of money."
+    balance: "&2&lMONEY &8» &aYou have %balance% &8(&a%balance_format%&8) &aof money."
     sent-payment: "&2&lMONEY &8» &a%money%$ has been sent to %player_name%."
     receive-payment: "&2&lMONEY &8» &a%money%$ has been received from %player_name%."
     not-enough-balance: "&4&lMONEY &8» &cYou don't have enough money for this."

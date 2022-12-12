@@ -34,7 +34,9 @@ public class BalanceCommand implements CommandExecutor {
         String message = messages.getString("economy.balance");
         if (message != null && !message.isEmpty())
             sender.sendMessage(Utils.colorize(
-                    message.replace("%balance%", economyAPI.formatValue(balance))
+                    message
+                            .replace("%balance%", String.format("%,.2f", balance))
+                            .replace("%balance_format%", economyAPI.formatValue(balance))
             ));
         return true;
     }
