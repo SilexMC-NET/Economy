@@ -10,6 +10,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import java.math.BigDecimal;
+
 public class BalanceCommand implements CommandExecutor {
     private final ConfigurationSection messages;
     private final EconomyAPI economyAPI;
@@ -29,7 +31,7 @@ public class BalanceCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        double balance = economyAPI.getBalance(player);
+        BigDecimal balance = economyAPI.getBalance(player);
 
         String message = messages.getString("economy.balance");
         if (message != null && !message.isEmpty())

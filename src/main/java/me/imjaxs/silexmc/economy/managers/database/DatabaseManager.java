@@ -85,7 +85,7 @@ public class DatabaseManager {
             public void setValues(@NotNull PreparedStatement statement, int i) throws SQLException {
                 EPlayer economyPlayer = playerCache.get(i);
 
-                statement.setDouble(1, economyPlayer.getBalance());
+                statement.setDouble(1, economyPlayer.getBalance().doubleValue());
                 statement.setString(2, economyPlayer.getUniqueID().toString());
             }
 
@@ -105,7 +105,7 @@ public class DatabaseManager {
             public void setValues(@NotNull PreparedStatement statement, int i) throws SQLException {
                 EPlayer economyPlayer = playerCache.get(i);
 
-                statement.setDouble(1, economyPlayer.getBalance());
+                statement.setDouble(1, economyPlayer.getBalance().doubleValue());
                 statement.setString(2, economyPlayer.getUniqueID().toString());
             }
 

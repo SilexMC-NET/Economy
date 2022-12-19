@@ -1,11 +1,12 @@
 package me.imjaxs.silexmc.economy.objects;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 public class EPlayer {
     private final String name;
     private final UUID uniqueID;
-    private double balance;
+    private BigDecimal balance;
 
     public EPlayer(String name, UUID uniqueID) {
         this(name, uniqueID, 0.0);
@@ -14,7 +15,7 @@ public class EPlayer {
     public EPlayer(String name, UUID uniqueID, double balance) {
         this.name = name;
         this.uniqueID = uniqueID;
-        this.balance = balance;
+        this.balance = new BigDecimal(balance);
     }
 
     public String getName() {
@@ -25,11 +26,11 @@ public class EPlayer {
         return uniqueID;
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 }

@@ -12,6 +12,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import java.math.BigDecimal;
+
 public class PaymentCommand implements CommandExecutor {
     private final ConfigurationSection messages;
     private final EconomyAPI economyAPI;
@@ -56,9 +58,9 @@ public class PaymentCommand implements CommandExecutor {
                 ));
             return true;
         }
-        double value = Double.parseDouble(args[1]);
+        BigDecimal value = BigDecimal.valueOf(Double.parseDouble(args[1]));
 
-        if (economyAPI.getBalance(player) < value) {
+        if (economyAPI.hasBalance(player, value)) {
             String message = messages.getString("economy.not-enough-balance");
             if (message != null && !message.isEmpty())
                 sender.sendMessage(Utils.colorize(message));

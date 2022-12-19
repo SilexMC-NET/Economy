@@ -10,6 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import java.math.BigDecimal;
+
 public class SetCommand implements SubCommand {
     private final ConfigurationSection messages;
     private final EconomyAPI economyAPI;
@@ -44,7 +46,7 @@ public class SetCommand implements SubCommand {
 
         if (!NumberUtils.isNumber(args[1]))
             return false;
-        double value = Double.parseDouble(args[1]);
+        BigDecimal value = BigDecimal.valueOf(Double.parseDouble(args[1]));
 
         economyAPI.setBalance(target, value);
         String message;
